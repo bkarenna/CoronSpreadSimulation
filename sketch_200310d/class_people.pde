@@ -95,7 +95,7 @@ class People {
       int circle_x = global_offset + house_col + middle_offset;
       int circle_y = global_offset + house_block_offset + house_row + house_offset + middle_offset;
       fill(color_stages[stage]);
-      strokeWeight(0);
+      strokeWeight(0.1);
       circle(circle_x, circle_y, 14);
     }
     else{
@@ -107,7 +107,7 @@ class People {
       int circle_x = offset_x + office_col + middle_offset;
       int circle_y = offset_y + office_row + middle_offset;
       fill(color_stages[stage]);
-      strokeWeight(0);
+      strokeWeight(0.1);
       circle(circle_x, circle_y, 14);
     }
   }

@@ -45,7 +45,7 @@ void setup()
       nr++;
     }
   }
-  // Hi there
+ 
   //  for (int i = 0; i < houses.length; i++ ) {
   //    for (int j = 1; j < houses[0].length; j+=3 ) {
   //      houses[i][j].return_home();

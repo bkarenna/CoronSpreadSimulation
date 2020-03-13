@@ -10,7 +10,10 @@ void update_txt() {
   fill(255);
   textSize(12);
   text("Number of days     "+ date, 650, 270);
-  text("State is     "+ work_state, 650, 300);
+  if(work_state != null)
+    text("State is     "+ work_state, 650, 300);
+  else 
+     text("The simulation is not started", 650, 300);
 }
 
 void writetext() {

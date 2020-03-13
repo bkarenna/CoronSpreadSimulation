@@ -47,7 +47,6 @@ class People {
    1 orange could infect 3 blue to yellow)
    */
    
-   
   void move(int x, int y){
     if(xpos + x >= officeCols)
       xpos = officeCols-1;
@@ -68,19 +67,15 @@ class People {
     return coordinates;
   }
   
-  void move_to_the_office(int x, int y){
+  void move_to_the_office(){
     if(!isWorking)
       println("This guys doesn't belong in the office");
     else{
-      xpos = x;
-      ypos = y;
       isHome = false;
     }
   }
   
    void return_home(){
-    xpos = -1;
-    ypos = -1;
     isHome = true;
   }
 

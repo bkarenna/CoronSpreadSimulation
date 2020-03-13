@@ -22,26 +22,36 @@ int date;
 int time = 3;
 int start_time;
 int observation_period;
+int workers_daily;
 String work_state;
+String action_flag;
+boolean isWorker;
 boolean sotpSimulation;
 boolean bugfix;
-People [][] houses; 
+People [][] houses;
+People [][] office_space;
+
 
 void setup()
 {
   bugfix = false;
   sotpSimulation = false;
+  isWorker = false;
   houses = new People[50][18]; 
+  office_space = new People[20][15];
+  populate_houses_and_office();
+  shuffle_people(100000);
   cp5 = new ControlP5(this);
   size (1000, 800); //canvas range
   background(0);
   observation_period = 0;
+  workers_daily = 285;
   office();//set up office
   houses();//set up houses
   writetext();
   controlp5();
   frameRate(120);
-  populate_houses();
+  action_flag = "not woking";
   start_time = millis();
   bugfix = true;
 }
@@ -57,7 +67,6 @@ void draw() {
   if(!sotpSimulation){
     move_people(days);
   }
-  
   update_txt();
   draw_people();
 }

@@ -29,29 +29,34 @@ void controlp5() {
     ;   
   cp5.addToggle("toggle")
      .setPosition(850, 460)
-     .setSize(100,20)
+     .setSize(126,20)
      .setValue(true)
+     .setCaptionLabel("Worker                   Homeseatrer")
      .setMode(ControlP5.SWITCH)
      ;
   cp5.addButton("Start_simulation")
     .setValue(0)
     .setPosition(650, 410)
+    .setCaptionLabel("Start simulation")
     .setSize(150, 20)
     ;
   cp5.addButton("Stop_simulation")
     .setValue(0)
     .setPosition(650, 460)
+    .setCaptionLabel("Stop simulation")
     .setSize(150, 20)
     ;
 }
 
 public void Start_simulation() {
   if(bugfix){
+    shuffle_people(100000);
     sotpSimulation = false;
     cure_all();
+    infect_random(isWorker);
+    workers_daily = int(cp5.getController("Number_of_workers").getValue());
     observation_period = int(cp5.getController("Observation_days").getValue());
     start_time = millis();
-    houses[4][7].infection_logic();
   }
 }
 
@@ -61,6 +66,11 @@ public void Stop_simulation() {
   }
 }
 
+void toggle(boolean worker) {
+  if(bugfix){
+    isWorker = worker;
+  }   
+}
 //public void button() {
 //  if(bugfix){
     

@@ -18,23 +18,55 @@ void controlp5() {
     .setNumberOfTickMarks(301)
     .setSliderMode(Slider.FLEXIBLE)
     ;   
-  cp5.addButton("Start_simulation")
-    .setValue(0)
+  cp5.addSlider("Observation_days")
     .setPosition(650, 370)
-    .setSize(150, 20)
-    ;
-  cp5.addButton("Stop_simulation")
+    .setWidth(200)
+    .setHeight(20)
+    .setRange(1, 100)
+    .setValue(30)
+    .setNumberOfTickMarks(100)
+    .setSliderMode(Slider.FLEXIBLE)
+    ;   
+  cp5.addToggle("toggle")
+     .setPosition(850, 460)
+     .setSize(100,20)
+     .setValue(true)
+     .setMode(ControlP5.SWITCH)
+     ;
+  cp5.addButton("Start_simulation")
     .setValue(0)
     .setPosition(650, 410)
     .setSize(150, 20)
     ;
-  cp5.addButton("A_random_person_got_infected")
+  cp5.addButton("Stop_simulation")
     .setValue(0)
-    .setPosition(650, 450)
+    .setPosition(650, 460)
     .setSize(150, 20)
     ;
 }
 
+public void Start_simulation() {
+  if(bugfix){
+    sotpSimulation = false;
+    cure_all();
+    observation_period = int(cp5.getController("Observation_days").getValue());
+    start_time = millis();
+    houses[4][7].infection_logic();
+  }
+}
+
+public void Stop_simulation() {
+  if(bugfix){
+    sotpSimulation = true;    
+  }
+}
+
+//public void button() {
+//  if(bugfix){
+    
+//  }
+//}
+ 
 /*public void controlEvent(ControlEvent theEvent) {
   String name = theEvent.getController().getName();
   if (name.equals("Start simulation")){

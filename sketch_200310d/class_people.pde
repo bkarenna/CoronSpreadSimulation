@@ -84,6 +84,10 @@ class People {
     isHome = true;
   }
 
+  void cure(){
+    this.stage = 0;
+  }
+  
   void draw_person(){
     if(isHome){
       int global_offset = 50;

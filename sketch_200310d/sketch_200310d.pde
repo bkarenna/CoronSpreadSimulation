@@ -47,7 +47,7 @@ void setup()
   office_space = new People[office_len][15];
   populate_houses();
   cp5 = new ControlP5(this);
-  size (1000, 800); //canvas range
+  size (1000, 850); //canvas range
   background(0);
   office();//draws up office
   houses();//draws up houses

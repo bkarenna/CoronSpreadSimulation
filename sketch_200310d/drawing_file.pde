@@ -26,8 +26,42 @@ void writetext() {
 
 void drawinstruction() {
   fill(51,153,255);
-  circle(100,300,10);
+  circle(45,250,10);
+  fill(255);
+  textSize(11);
+  text("Healthy", 55, 255);
   
+  fill(253,253,91);
+  circle(45,275,10);
+  fill(255);
+  textSize(11);
+  text("Infected, no symptoms", 55, 275);
+  text(", not contagious", 55, 285);
+  
+  fill(255,153,51);
+  circle(45,300,10);
+  fill(255);
+  textSize(11);
+  text("Infected, no symptoms", 55, 300);
+  text(", already contagious", 55, 310);
+  
+  fill(255,0,0);
+  circle(45,325,10);
+  fill(255);
+  textSize(11);
+  text("Infected, show symptoms", 55, 325);
+  text(",contagious, stays home", 55, 335);
+  
+  fill(255);
+  textSize(11);
+  text("This is a simulation reflecting how COVID-19 can spreading over a community of 900 people, based on the number of ppl working in office everyday.", 55, 745);
+
+  text("All of the simulations start with only 1 random person getting infected in the community. It emphasize importance of self quarantine and reduce contact.", 55, 760);
+
+  text("The infection model used in this simualtion is not precise, as we don't fully understand COVID-19 yet. (R0=2, incubation period 4-14 days, carrier is ", 55, 775);
+
+  text("contagious 2 days before showing symptoms). The project is just for demo use, not for calcuations.", 55, 790);
+
 }
 
 void office() {

@@ -26,7 +26,6 @@ int workers_daily;
 int office_len;
 String work_state;
 String action_flag;
-boolean isWorker;
 boolean stopSimulation;
 boolean bugfix;
 People [][] houses;
@@ -41,7 +40,6 @@ void setup()
   observation_period = 0;
   bugfix = false;
   stopSimulation = false;
-  isWorker = false;
   theOnesThatGoToWork = new People[300];
   houses = new People[50][18]; 
   office_len = 20;
@@ -58,6 +56,7 @@ void setup()
   action_flag = "not woking";
   start_time = millis();
   bugfix = true;
+  
 }
 
 void draw() {

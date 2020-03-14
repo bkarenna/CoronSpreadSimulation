@@ -56,7 +56,7 @@ public void Start_simulation() {
     workers_daily = int(cp5.getController("Number_of_workers").getValue());
     observation_period = int(cp5.getController("Observation_days").getValue());
     populate_office();
-    infect_random(isWorker);
+    infect_random(parseBoolean(int(cp5.getController("toggle").getValue())));
   }
 }
 
@@ -66,11 +66,7 @@ public void Stop_simulation() {
   }
 }
 
-void toggle(boolean worker) {
-  if(bugfix){
-    isWorker = worker;
-  }   
-}
+
 //public void button() {
 //  if(bugfix){
     

@@ -77,6 +77,7 @@ void working_day_starts(){
   int count_total = 0;
   int count_working = 0;
   People tmp;
+  shuffle_people_in_the_office(10000);
   //initialize array with nulls
   for (int i = 0; i < theOnesThatGoToWork.length; i++ ) 
     theOnesThatGoToWork[i]=null;

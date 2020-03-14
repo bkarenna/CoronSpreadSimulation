@@ -19,6 +19,7 @@ Knob myKnob;
 int m;
 int hour;
 int date;
+int deseaseTrigger;
 int time = 3;
 int start_time;
 int observation_period;
@@ -31,8 +32,6 @@ boolean bugfix;
 People [][] houses;
 People [][] office_space;
 People [] theOnesThatGoToWork;
-
-
 
 void setup()
 {

@@ -55,6 +55,10 @@ void shuffle_people_in_the_office(int times) {
 void move_people(float days_passed) {
   if (days_passed <= observation_period) {
     date = int(days_passed)+1;
+    if(deseaseTrigger < date){
+      desease_day_passed();
+      deseaseTrigger++;
+    }
     int hours_passed = int(days_passed*24);
     if ( hours_passed%24 >= 8 && hours_passed%24 < 16 )
     {
@@ -113,13 +117,13 @@ void infect_random(boolean worker) {
   int unlucky_first;
   if (worker) {
     unlucky_first = int(random(0, 300));
-    office_space[unlucky_first%20][unlucky_first/20].sickness_advances();
+    office_space[unlucky_first%20][unlucky_first/20].gets_sick();
   } else {
     unlucky_first = int(random(0, 600));
     for (int i = 0; i < houses.length; i++ ) {
       for (int j = 0; j < houses[0].length; j+=3 ) {
         if (unlucky_first == counter) {
-          houses[i][j].sickness_advances();
+          houses[i][j].gets_sick();
           counter++;
         } 
         else
@@ -129,12 +133,20 @@ void infect_random(boolean worker) {
      for (int i = 0; i < houses.length; i++ ) {
       for (int j = 2; j < houses[0].length; j+=3 ) {
         if (unlucky_first == counter) {
-          houses[i][j].sickness_advances();
+          houses[i][j].gets_sick();
           counter++;
         } 
         else
           counter++;
       }
     }
+  }
+}
+
+void desease_day_passed(){
+  for (int i = 0; i < houses.length; i++ ) {
+      for (int j = 0; j < houses[0].length; j++ ) {
+        houses[i][j].sickness_develops();
+      }
   }
 }

@@ -9,6 +9,7 @@ color[] color_stages = {color(51,153,255), color(253,253,91), color(255,153,51),
 
 class People { 
   private int stage;
+  private int advencementCounter;
   private int xpos;
   private int ypos;
   private int houseX;
@@ -83,6 +84,8 @@ class People {
     this.stage = 0;
   }
   
+  
+  
   void draw_person(){
     if(isHome){
       int global_offset = 50;
@@ -110,12 +113,29 @@ class People {
       circle(circle_x, circle_y, 14);
     }
   }
-
-  void sickness_advances(){
-    if(stage<3)
-      stage+=1;
-    if(stage == 3)
-      isWorking = false;
+  
+  boolean isContageous(){
+    return stage == 2;
+  }
+  
+  void sickness_develops(){
+    if(stage != 0 && stage != 3)
+    {
+      advencementCounter--;
+      if(stage == 2 && advencementCounter == 0){
+        stage++;
+        isWorking = false;
+      }
+      else if(stage == 1 && advencementCounter == 0){
+        advencementCounter = 3;
+        stage++;
+      }
+    }
+  }
+  
+  void gets_sick(){
+        stage = 1;
+        advencementCounter = int(random(2,13));
   }
   
 }

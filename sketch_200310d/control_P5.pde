@@ -18,17 +18,8 @@ void controlp5() {
     .setNumberOfTickMarks(301)
     .setSliderMode(Slider.FLEXIBLE)
     ;   
-  cp5.addSlider("Observation_days")
-    .setPosition(650, 370)
-    .setWidth(200)
-    .setHeight(20)
-    .setRange(0, 75)
-    .setValue(30)
-    .setNumberOfTickMarks(6)
-    .setSliderMode(Slider.FLEXIBLE)
-    ;   
   cp5.addToggle("toggle")
-     .setPosition(850, 460)
+     .setPosition(850, 400)
      .setSize(126,20)
      .setValue(true)
      .setCaptionLabel("Worker                   Homeseatrer")
@@ -36,13 +27,13 @@ void controlp5() {
      ;
   cp5.addButton("Start_simulation")
     .setValue(0)
-    .setPosition(650, 410)
+    .setPosition(650, 400)
     .setCaptionLabel("Start simulation")
     .setSize(150, 20)
     ;
   cp5.addButton("Stop_simulation")
     .setValue(0)
-    .setPosition(650, 460)
+    .setPosition(650, 470)
     .setCaptionLabel("Stop simulation")
     .setSize(150, 20)
     ;
@@ -51,10 +42,11 @@ void controlp5() {
 public void Start_simulation() {
   if(bugfix){
     stopSimulation = false;
+    deseaseTrigger = 1;
     cure_all();
     start_time = millis();
     workers_daily = int(cp5.getController("Number_of_workers").getValue());
-    observation_period = int(cp5.getController("Observation_days").getValue());
+    observation_period = 10000;
     populate_office();
     infect_random(parseBoolean(int(cp5.getController("toggle").getValue())));
   }

@@ -113,7 +113,7 @@ class People {
   }
   
   boolean isContageous(){
-    return stage == 2;
+    return stage >= 2;
   }
   
   boolean isHealthy(){

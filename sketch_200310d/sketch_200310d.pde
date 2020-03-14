@@ -25,6 +25,7 @@ int start_time;
 int observation_period;
 int workers_daily;
 int office_len;
+float simulationSpeed;
 String work_state;
 String action_flag;
 boolean stopSimulation;

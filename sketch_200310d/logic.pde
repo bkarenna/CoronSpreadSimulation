@@ -28,7 +28,7 @@ void cure_all() {
 
 float daycount() {
   float miliseconds_passed = (float(millis()) - float(start_time));
-  float days_passed = miliseconds_passed / float(1000);
+  float days_passed = miliseconds_passed / (1000.0/simulationSpeed);
   return days_passed;
 }
 
@@ -169,26 +169,18 @@ void infection_round(){
         }
         else{
           int maxX, maxY, minX, minY;
-          
-          
           if(houses[i][j].xpos==19)
             maxX = 19;
           else
-            maxX = houses[i][j].xpos+1;
-            
-            
+            maxX = houses[i][j].xpos+1;          
           if(houses[i][j].ypos==14)
             maxY = 14;
           else
-            maxY = houses[i][j].ypos+1;
-            
-            
+            maxY = houses[i][j].ypos+1;       
           if(houses[i][j].xpos==0)
             minX = 0;
           else
-            minX = houses[i][j].xpos-1;
-            
-            
+            minX = houses[i][j].xpos-1; 
           if(houses[i][j].ypos==0)
             minY = 0;
           else

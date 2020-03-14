@@ -51,6 +51,7 @@ void controlp5() {
 public void Start_simulation() {
   if(bugfix){
     stopSimulation = false;
+    cure_all();
     start_time = millis();
     workers_daily = int(cp5.getController("Number_of_workers").getValue());
     observation_period = int(cp5.getController("Observation_days").getValue());

@@ -16,7 +16,6 @@ void populate_office() {
     }
   }
   shuffle_people_in_the_office(100000);
-  
 }
 
 void cure_all() {
@@ -90,16 +89,15 @@ void working_day_starts(){
   }
   if( count_working < workers_daily )
     workers_daily = count_working;
-  for (int i = 0; i < workers_daily*300; i++ ) {
-    int first = int(random(0, workers_daily));
-    int second = int(random(0, workers_daily));
+  for (int i = 0; i < count_working*300; i++ ) {
+    int first = int(random(0, count_working));
+    int second = int(random(0, count_working));
     while (first==second)
-      second = int(random(0, workers_daily));
+      second = int(random(0, count_working));
     tmp = theOnesThatGoToWork[first];
     theOnesThatGoToWork[first] = theOnesThatGoToWork[second];
     theOnesThatGoToWork[second] = tmp;
   }
-  
  for (int i = 0; i < workers_daily; i++ )
    theOnesThatGoToWork[i].move_to_the_office();
 }
@@ -110,7 +108,6 @@ void working_day_ends(){
 }
 
 void infect_random(boolean worker) {
-  println("entered");
   int counter = 0;
   int unlucky_first;
   if (worker) {

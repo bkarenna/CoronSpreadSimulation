@@ -54,6 +54,7 @@ public void Start_simulation() {
   if(bugfix){
     stopSimulation = false;
     deseaseTrigger = 1;
+    date = 1;
     cure_all();
     simulationSpeed = cp5.getController("Simulation_speed").getValue();
     start_time = millis();

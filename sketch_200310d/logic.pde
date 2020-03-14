@@ -33,31 +33,31 @@ float daycount() {
 }
 
 void shuffle_people_in_the_office(int times) {
-  People tmp;
-  for (int i = 0; i < times; i++ ) {
-    int first = int(random(0, 300));
-    int second = int(random(0, 300));
-    while (first==second)
-      second = int(random(0, 300));
-    tmp = office_space[first%office_len][first/office_len];
-    office_space[first%office_len][first/office_len] = office_space[second%office_len][second/office_len];
-    office_space[second%office_len][second/office_len] = tmp;
-  }
-  //assign new office possitions top people
-  for (int i = 0; i < office_space.length; i++ ) {
-        for (int j = 0; j < office_space[0].length; j++ ) {
-          office_space[i][j].xpos = i;
-          office_space[i][j].ypos = j;
-          if(office_space[i][j].ypos > 14)
-            println("WARNING");
-          
-        }
-  }
+    People tmp;
+    for (int i = 0; i < times; i++ ) {
+      int first = int(random(0, 300));
+      int second = int(random(0, 300));
+      while(first==second){
+        second = int(random(0, 300));
+      }
+      tmp = office_space[first%office_len][first/office_len];
+      office_space[first%office_len][first/office_len] = office_space[second%office_len][second/office_len];
+      office_space[second%office_len][second/office_len] = tmp;
+    }
+    //assign new office possitions top people
+    for (int i = 0; i < office_space.length; i++ ) {
+          for (int j = 0; j < office_space[0].length; j++ ) {
+            office_space[i][j].xpos = i;
+            office_space[i][j].ypos = j;
+            if(office_space[i][j].ypos > 14)
+              println("WARNING");
+            
+          }
+    }
 }
 
 void move_people(float days_passed) {
   if (days_passed <= observation_period) {
-    date = int(days_passed)+1;
     if(deseaseTrigger < date){
       desease_day_passed();
       deseaseTrigger++;
@@ -70,6 +70,7 @@ void move_people(float days_passed) {
       work_state = "not woking";
     }
     if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("working hours") == 0 ) {
+      date++;
       working_day_starts();
       infection_round();
       action_flag = work_state;
@@ -99,17 +100,20 @@ void working_day_starts(){
   }
   if( count_working < workers_daily )
     workers_daily = count_working;
-  for (int i = 0; i < count_working*300; i++ ) {
-    int first = int(random(0, count_working));
-    int second = int(random(0, count_working));
-    while (first==second)
-      second = int(random(0, count_working));
-    tmp = theOnesThatGoToWork[first];
-    theOnesThatGoToWork[first] = theOnesThatGoToWork[second];
-    theOnesThatGoToWork[second] = tmp;
+  if(workers_daily>1){
+    for (int i = 0; i < count_working*300; i++ ) {
+      int first = int(random(0, count_working));
+      int second = int(random(0, count_working));
+      while (first==second){
+        second = int(random(0, count_working));
+      }
+      tmp = theOnesThatGoToWork[first];
+      theOnesThatGoToWork[first] = theOnesThatGoToWork[second];
+      theOnesThatGoToWork[second] = tmp;
+    }
+   for (int i = 0; i < workers_daily; i++ )
+     theOnesThatGoToWork[i].move_to_the_office();
   }
- for (int i = 0; i < workers_daily; i++ )
-   theOnesThatGoToWork[i].move_to_the_office();
 }
 
 void working_day_ends(){

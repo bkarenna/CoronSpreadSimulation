@@ -36,6 +36,7 @@ People [] theOnesThatGoToWork;
 
 void setup()
 {
+  date = 1;
   workers_daily = 285;
   observation_period = 0;
   bugfix = false;
@@ -52,6 +53,7 @@ void setup()
   houses();//draws up houses
   writetext();
   controlp5();
+  drawinstruction();
   frameRate(120);
   action_flag = "not woking";
   start_time = millis();

@@ -23,6 +23,13 @@ void writetext() {
   text("Houses 1-150", 50, 45);
   text("Houses 150-300", 50, 545);
 }
+
+void drawinstruction() {
+  fill(51,153,255);
+  circle(100,300,10);
+  
+}
+
 void office() {
   int officeCols = 20;
   int officeRows = 15;

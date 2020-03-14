@@ -117,8 +117,11 @@ void working_day_starts(){
 }
 
 void working_day_ends(){
-  for (int i = 0; i < workers_daily; i++ )
-    theOnesThatGoToWork[i].return_home();
+  for (int i = 0; i < workers_daily; i++ ){
+    //  hack fix
+    if(theOnesThatGoToWork[i]!= null)
+      theOnesThatGoToWork[i].return_home();
+  }
 }
 
 void infect_random(boolean worker) {

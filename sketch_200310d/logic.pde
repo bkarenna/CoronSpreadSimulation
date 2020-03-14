@@ -12,6 +12,13 @@ void populate_houses_and_office() {
       nr++;
     }
   }
+  shuffle_people(100000);
+  for (int i = 0; i < office_space.length; i++ ) {
+    for (int j = 0; j < office_space[0].length; j++ ) {
+       office_space[i][j].move_to_the_office(i,j);
+    }
+  }
+  infect_random(true);
 }
 
 void move_people(float days_passed) {
@@ -26,16 +33,16 @@ void move_people(float days_passed) {
     }
     if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("working hours") != 0 ) {
       shuffle_people(10000);
-      for (int i = 0; i < houses.length; i++ ) {
-        for (int j = 1; j < houses[0].length; j+=3 ) {
-          houses[i][j].move_to_the_office();
+      for (int i = 0; i < office_space.length; i++ ) {
+        for (int j = 0; j < office_space[0].length; j++ ) {
+          office_space[i][j].move_to_the_office(i,j);
         }
       }
       action_flag = work_state;
-    } else if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("not woking") != 0 ) {
-      for (int i = 0; i < houses.length; i++ ) {
-        for (int j = 1; j < houses[0].length; j+=3 ) {
-          houses[i][j].return_home();
+    } else if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("not woking")!= 0 ){        
+       for (int i = 0; i < office_space.length; i++ ) {
+        for (int j = 0; j < office_space[0].length; j++ ) {
+          office_space[i][j].return_home();
         }
       }
     }
@@ -70,21 +77,32 @@ void shuffle_people(int times) {
 }
 
 void infect_random(boolean worker) {
-  print(1);
   int counter = 0;
   int unlucky_first;
   if (worker) {
     unlucky_first = int(random(0, 300));
+    office_space[unlucky_first%20][unlucky_first/20].infection_logic();
   } else {
     unlucky_first = int(random(0, 600));
-  }
-  for (int i = 0; i < houses.length; i++ ) {
-    for (int j = 0; j < houses[0].length; j++ ) {
-      if (unlucky_first == counter) {
-        houses[i][j].infection_logic();
-        break;
-      } else
-        counter++;
+    for (int i = 0; i < houses.length; i++ ) {
+      for (int j = 0; j < houses[0].length; j+=3 ) {
+        if (unlucky_first == counter) {
+          houses[i][j].infection_logic();
+          break;
+        } 
+        else
+          counter++;
+      }
+    }
+     for (int i = 0; i < houses.length; i++ ) {
+      for (int j = 2; j < houses[0].length; j+=3 ) {
+        if (unlucky_first == counter) {
+          houses[i][j].infection_logic();
+          break;
+        } 
+        else
+          counter++;
+      }
     }
   }
 }

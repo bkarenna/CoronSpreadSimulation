@@ -26,7 +26,7 @@ int workers_daily;
 String work_state;
 String action_flag;
 boolean isWorker;
-boolean sotpSimulation;
+boolean stopSimulation;
 boolean bugfix;
 People [][] houses;
 People [][] office_space;
@@ -35,7 +35,7 @@ People [][] office_space;
 void setup()
 {
   bugfix = false;
-  sotpSimulation = false;
+  stopSimulation = false;
   isWorker = false;
   houses = new People[50][18]; 
   office_space = new People[20][15];
@@ -64,7 +64,7 @@ void draw() {
   rect(650, 250, 200, 70);  
   stroke(153);
   float days = daycount();
-  if(!sotpSimulation){
+  if(!stopSimulation){
     move_people(days);
   }
   update_txt();

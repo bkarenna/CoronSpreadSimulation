@@ -50,9 +50,8 @@ void controlp5() {
 
 public void Start_simulation() {
   if(bugfix){
-    shuffle_people(100000);
-    sotpSimulation = false;
-    cure_all();
+    populate_houses_and_office();
+    stopSimulation = false;
     infect_random(isWorker);
     workers_daily = int(cp5.getController("Number_of_workers").getValue());
     observation_period = int(cp5.getController("Observation_days").getValue());
@@ -62,7 +61,7 @@ public void Start_simulation() {
 
 public void Stop_simulation() {
   if(bugfix){
-    sotpSimulation = true;    
+    stopSimulation = true;    
   }
 }
 

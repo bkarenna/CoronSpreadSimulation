@@ -67,13 +67,11 @@ class People {
     return coordinates;
   }
   
-  void move_to_the_office(int x, int y){
+  void move_to_the_office(){
     if(!isWorking)
       println("This guys doesn't belong in the office");
     else{
       isHome = false;
-      xpos = x;
-      ypos = y;
     }
   }
   
@@ -113,9 +111,11 @@ class People {
     }
   }
 
-  void infection_logic(){
+  void sickness_advances(){
     if(stage<3)
       stage+=1;
+    if(stage == 3)
+      isWorking = false;
   }
   
 }

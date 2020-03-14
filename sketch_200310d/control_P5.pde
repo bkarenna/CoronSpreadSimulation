@@ -76,16 +76,3 @@ void toggle(boolean worker) {
 //  }
 //}
  
-/*public void controlEvent(ControlEvent theEvent) {
-  String name = theEvent.getController().getName();
-  if (name.equals("Start simulation")){
-    start = true;
-    dateCounte();
-  }
-  if (name.equals("Stop simulation")){
-    start = false;
-  }
-  if (name.equals("A random person got infected")){
-    
-  }
-}*/

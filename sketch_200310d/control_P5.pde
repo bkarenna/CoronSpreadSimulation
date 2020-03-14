@@ -22,9 +22,9 @@ void controlp5() {
     .setPosition(650, 370)
     .setWidth(200)
     .setHeight(20)
-    .setRange(1, 100)
+    .setRange(0, 75)
     .setValue(30)
-    .setNumberOfTickMarks(100)
+    .setNumberOfTickMarks(6)
     .setSliderMode(Slider.FLEXIBLE)
     ;   
   cp5.addToggle("toggle")
@@ -50,12 +50,12 @@ void controlp5() {
 
 public void Start_simulation() {
   if(bugfix){
-    populate_houses_and_office();
     stopSimulation = false;
-    infect_random(isWorker);
+    start_time = millis();
     workers_daily = int(cp5.getController("Number_of_workers").getValue());
     observation_period = int(cp5.getController("Observation_days").getValue());
-    start_time = millis();
+    populate_office();
+    infect_random(isWorker);
   }
 }
 

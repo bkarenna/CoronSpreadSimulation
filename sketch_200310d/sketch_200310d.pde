@@ -46,13 +46,12 @@ void setup()
   houses = new People[50][18]; 
   office_len = 20;
   office_space = new People[office_len][15];
-  populate_houses_and_office();
-  shuffle_people_in_the_office(100000);
+  populate_houses();
   cp5 = new ControlP5(this);
   size (1000, 800); //canvas range
   background(0);
-  office();//set up office
-  houses();//set up houses
+  office();//draws up office
+  houses();//draws up houses
   writetext();
   controlp5();
   frameRate(120);

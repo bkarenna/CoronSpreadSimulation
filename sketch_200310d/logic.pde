@@ -48,6 +48,9 @@ void shuffle_people_in_the_office(int times) {
         for (int j = 0; j < office_space[0].length; j++ ) {
           office_space[i][j].xpos = i;
           office_space[i][j].ypos = j;
+          if(office_space[i][j].ypos > 14)
+            println("WARNING");
+          
         }
   }
 }
@@ -68,10 +71,12 @@ void move_people(float days_passed) {
     }
     if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("working hours") == 0 ) {
       working_day_starts();
+      infection_round();
       action_flag = work_state;
     } 
     else if ( action_flag.compareTo(work_state) != 0  && work_state.compareTo("not woking")== 0 ){        
       working_day_ends();
+      infection_round();
       action_flag = work_state;     
     }
   }
@@ -145,8 +150,57 @@ void infect_random(boolean worker) {
 
 void desease_day_passed(){
   for (int i = 0; i < houses.length; i++ ) {
-      for (int j = 0; j < houses[0].length; j++ ) {
-        houses[i][j].sickness_develops();
+    for (int j = 0; j < houses[0].length; j++ ) {
+      houses[i][j].sickness_develops();
+    }
+  }
+}
+
+void infection_round(){
+  for(int i = 0; i < houses.length; i++ ) {
+    for(int j = 0; j < houses[0].length; j++ ) {
+      if(houses[i][j].isContageous()){
+        if(houses[i][j].isHome){
+          int house_coordinates = int(j/3)*3;
+          for(int k = 0; k < 3; k++){
+            if(houses[i][house_coordinates+k].isHome && houses[i][house_coordinates+k].isHealthy()&&random(0,100)<25)
+              houses[i][house_coordinates+k].gets_sick();
+          }
+        }
+        else{
+          int maxX, maxY, minX, minY;
+          
+          
+          if(houses[i][j].xpos==19)
+            maxX = 19;
+          else
+            maxX = houses[i][j].xpos+1;
+            
+            
+          if(houses[i][j].ypos==14)
+            maxY = 14;
+          else
+            maxY = houses[i][j].ypos+1;
+            
+            
+          if(houses[i][j].xpos==0)
+            minX = 0;
+          else
+            minX = houses[i][j].xpos-1;
+            
+            
+          if(houses[i][j].ypos==0)
+            minY = 0;
+          else
+            minY = houses[i][j].ypos-1;
+          for(int x = minX; x <= maxX; x++){
+            for(int y = minY; y <= maxY; y++){
+              if(!office_space[x][y].isHome && office_space[x][y].isHealthy()&&random(0,100)<25)
+                office_space[x][y].gets_sick();            
+            }
+          }
+        }
       }
+    }
   }
 }

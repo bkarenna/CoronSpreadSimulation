@@ -84,8 +84,6 @@ class People {
     this.stage = 0;
   }
   
-  
-  
   void draw_person(){
     if(isHome){
       int global_offset = 50;
@@ -116,6 +114,10 @@ class People {
   
   boolean isContageous(){
     return stage == 2;
+  }
+  
+  boolean isHealthy(){
+    return stage == 0;
   }
   
   void sickness_develops(){
